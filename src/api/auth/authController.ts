@@ -6,7 +6,16 @@ const authController = {
     registerUser: async (req: Request, res: Response, next: NextFunction): Promise<any | void> => {
         try {
             const result = await authService.register(req.body);
-            return handleResponse.success(res, "User registered successfully", result);
+            return handleResponse.success(res, "Account created successfully", result);
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    loginUser: async (req: Request, res: Response, next: NextFunction): Promise<any | void> => {
+        try {
+            const result = await authService.login(req.body);
+            return handleResponse.success(res, "Login successful", result);
         } catch (err) {
             next(err);
         }

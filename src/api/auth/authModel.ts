@@ -1,14 +1,12 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface IUser extends Document {
-    _id: string,
     name: string,
     email: string,
     username: string,
     password: string,
     avatarUrl: string,
-    friends: mongoose.Types.ObjectId[],
-    blockedUsers: mongoose.Types.ObjectId[]
+    isActive: boolean
 }
 
 const UserSchema = new Schema<IUser>({
@@ -17,8 +15,7 @@ const UserSchema = new Schema<IUser>({
     username: { type: String, required: true, unique: true, trim: true },
     password: { type: String, required: true },
     avatarUrl: { type: String },
-    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    blockedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    isActive: { type: Boolean, default: true }
 }, { timestamps: true });
 
 export default mongoose.model<IUser>('User', UserSchema);
