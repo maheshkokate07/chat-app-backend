@@ -5,7 +5,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import { socketHandler, onlineUsers } from './src/socket';
-import masterRouter from './src/routes/v1/masterRoute';
+import masterRouter from './src/routes/v1/masterRouter';
 import { apiRateLimiter } from './src/middlewares/rateLimiter';
 import { errorHandler } from './src/middlewares/errorHandler';
 
